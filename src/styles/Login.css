@@ -1,0 +1,13 @@
+.Login {
+    max-width: 1200px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer > input {
+    width: 200px;
+    padding: 5px;
+}

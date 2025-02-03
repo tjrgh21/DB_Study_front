@@ -1,0 +1,16 @@
+body {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.Home {
+    max-width: 1200px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+
+    flex-direction: column;
+}

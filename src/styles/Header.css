@@ -1,0 +1,23 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    padding: 20px;
+
+    width: 1200px;
+}
+
+.Header > input {
+    width: 600px;
+    padding: 15px;
+}
+
+.CartBtn {
+    margin-right: 40px;
+}
+
+.logo:hover {
+    cursor: pointer;
+}

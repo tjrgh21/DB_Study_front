@@ -1,0 +1,11 @@
+.Container {
+    display: flex;
+    justify-content: center;
+
+    gap: 20px;
+    margin: 5%;
+
+    width: 1200px;
+
+    border: 1px solid black; /* 범위 확인을 위한 임시 선선 */
+}

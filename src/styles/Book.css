@@ -1,0 +1,16 @@
+.BookItem {
+    border: 1px solid black;
+    width: 200px;
+    height: 250px;
+    margin: 15px;
+
+    cursor: pointer;
+}
+
+.Books {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+}

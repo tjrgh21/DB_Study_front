@@ -1,0 +1,11 @@
+.InfoContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.InfoFooter {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+}
