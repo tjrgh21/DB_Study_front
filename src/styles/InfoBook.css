@@ -9,3 +9,11 @@
     justify-content: space-around;
     border: 1px solid black;
 }
+
+.InfoFooter > span > input {
+    appearance: none;
+}
+
+.CountInput {
+    text-align: center;
+}

@@ -4,11 +4,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "../styles/Home.css";
 
-function Home() {
+function Home({setCount}) {
     return (
         <div className="Home">
             <Header />
-            <Container />
+            <Container setCount={setCount}/>
             <Footer />
         </div>
     )

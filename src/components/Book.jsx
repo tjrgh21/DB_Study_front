@@ -3,10 +3,11 @@ import "../styles/Book.css";
 import { useNavigate } from "react-router-dom";
 import BookInfo from "./BookData";
 
-function Book() {
+function Book( {setCount} ) {
     const navigate = useNavigate();
 
     const goBookInfo = (id) => {
+        setCount(1);
         navigate(`/book/${id}`)
     }
 

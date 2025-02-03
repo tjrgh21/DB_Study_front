@@ -1,0 +1,9 @@
+.CartContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.CartInput {
+    text-align: center;
+}
