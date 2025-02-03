@@ -7,3 +7,19 @@
 .CartInput {
     text-align: center;
 }
+
+.ItemPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CartBtns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.CartBtns > button {
+    width: 100px;
+    margin-top: 10px;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/Header.css';
 import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({book}) {
     const navigate = useNavigate();
 
     //Cart 페이지로
@@ -28,7 +28,6 @@ function Header() {
                 <button className="CartBtn" onClick={goCart}>장바구니</button>
                 <button className="LoginBtn" onClick={goLogin}>로그인</button>
             </div>
-
         </div>
     )
 };

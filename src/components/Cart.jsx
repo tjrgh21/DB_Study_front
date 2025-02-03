@@ -43,7 +43,7 @@ function Cart({ cartList, setCartList, setCount }) {
                                 </div>
                             </div>
                         ))}
-                        <span>
+                        <span className="CartBtns">
                             <button>구매</button>
                             <button onClick={clearCart}>비우기</button>
                         </span>
