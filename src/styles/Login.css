@@ -2,12 +2,30 @@
     max-width: 1200px;
 }
 
-.inputContainer {
+.LoginContainer, .SignupContainer {
     display: flex;
     flex-direction: column;
 }
 
-.inputContainer > input {
+.LoginContainer > input, .SignupContainer > input {
     width: 200px;
     padding: 5px;
+}
+
+.LogBtns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 210px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.LogBtn {
+    width: 100px;
+}
+
+.SignupBtn {
+    width: 210px;
+    margin-top: 10px;
 }
