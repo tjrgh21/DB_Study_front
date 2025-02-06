@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Book.css";
-import { useNavigate } from "react-router-dom";
-import BookInfo from "./BookData";
+import axios from "axios";
 
-function Book( {setCount} ) {
-    const navigate = useNavigate();
+axios.defaults.withCredentials = true;
 
-    const goBookInfo = (id) => {
-        setCount(1);
-        navigate(`/book/${id}`)
-    }
+function Book({ count, filterBook }) {
+    //DB에서 불러온 book 정보
+    const [bookInfo, setBookInfo] = useState({
+        title: "",
+        price: "",
+        stock: ""
+    });
+
+    //장바구니 추가
+    // const addCart = () => {
+    //     axios.post("http://localhost:4000/cart", { cartItem: bookInfo }).then((res) => {
+    //         console.log(res.data.msg)
+    //     })
+    // }
 
     return (
         <div className="Book">
-            <div className="Books">
-                {BookInfo.map((book) => (
-                    <div
-                        key={book.id}
-                        className="BookItem"
-                        onClick={() => goBookInfo(book.id)}
-                    >
-                        {book.title}
-                    </div>
-                ))}
-            </div>
+            {filterBook.map((book) => (
+                <div key={book.id} className="BookItem">
+                    <h2>{book.title}</h2>
+                    <p>가격: {book.price}원</p>
+                    <p>재고량: {book.stock}개</p>
+                    <span>
+                        <button>-</button>
+                        <input className="countBook" type="number" value={count} />
+                        <button>+</button>
+                    </span>
+                    <button>장바구니</button>
+                </div>
+            ))}
         </div>
     )
 };

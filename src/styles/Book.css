@@ -1,16 +1,32 @@
+.Book {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .BookItem {
     border: 1px solid black;
     width: 200px;
     height: 250px;
     margin: 15px;
 
-    cursor: pointer;
-}
-
-.Books {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
 
-    flex-wrap: wrap;
+.BookItem > h2, .BookItem > p {
+    margin: 5px;
+}
+
+/*input 내 화살표 없애기*/
+.countBook::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.countBook {
+    width: 50px;
+    margin: 5px;
+    text-align: center;
 }

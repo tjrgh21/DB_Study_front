@@ -34,9 +34,11 @@ function Login() {
     }
 
     const onClickSignup = () => {
-        // console.log(userSignup)
         axios.post("http://localhost:4000/signup", { user: userSignup }).then((res) => {
             console.log(res.data.msg)
+        })
+        axios.post("http://localhost:4000/cart", { user: userSignup }).then((res) => {
+            console.log(res.data.msg2)
         })
     }
 
@@ -54,7 +56,7 @@ function Login() {
 
     return (
         <div className="Login">
-            <h3>로그인</h3>
+            <h2>로그인</h2>
             <div className="LoginContainer">
                 <input
                     type="text"
@@ -76,7 +78,7 @@ function Login() {
             <button className="LogBtn" onClick={onClickLogin}>로그인</button>
             <button className="LogBtn" onClick={onClickLogout}>로그아웃</button>
             </div>
-            <h3>회원가입</h3>
+            <h2>회원가입</h2>
             <div className="SignupContainer">
                 <input
                     type="text"
