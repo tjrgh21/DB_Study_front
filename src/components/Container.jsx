@@ -1,12 +1,15 @@
 import React from "react";
 import Book from "./Book";
 import '../styles/Container.css';
-import BookInfo from "./BookData";
 
-function Container({ count, setCount, search }) {
-    const filterBook = BookInfo.filter(book =>
-        search === "" || book.title.includes(search)
-    );
+function Container({ count, setCount, search, bookInfo }) {
+    const filterBook = bookInfo ? (
+        search === ""
+            ? bookInfo
+            : bookInfo.filter(book =>
+                book.book_name.includes(search)
+            )
+    ) : [];
 
     return (
         <div className="Container">

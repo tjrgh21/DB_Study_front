@@ -1,18 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/Book.css";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
 function Book({ count, filterBook }) {
-    //DB에서 불러온 book 정보
-    const [bookInfo, setBookInfo] = useState({
-        title: "",
-        price: "",
-        stock: ""
-    });
-
-    //장바구니 추가
+    //장바구니에 책 추가
     // const addCart = () => {
     //     axios.post("http://localhost:4000/cart", { cartItem: bookInfo }).then((res) => {
     //         console.log(res.data.msg)
@@ -22,8 +15,8 @@ function Book({ count, filterBook }) {
     return (
         <div className="Book">
             {filterBook.map((book) => (
-                <div key={book.id} className="BookItem">
-                    <h2>{book.title}</h2>
+                <div key={book.book_id} className="BookItem">
+                    <h2>{book.book_name}</h2>
                     <p>가격: {book.price}원</p>
                     <p>재고량: {book.stock}개</p>
                     <span>
