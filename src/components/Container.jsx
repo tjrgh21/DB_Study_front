@@ -2,19 +2,12 @@ import React from "react";
 import Book from "./Book";
 import '../styles/Container.css';
 
-function Container({ count, setCount, search, bookInfo }) {
-    const filterBook = bookInfo ? (
-        search === ""
-            ? bookInfo
-            : bookInfo.filter(book =>
-                book.book_name.includes(search)
-            )
-    ) : [];
-
+function Container({ count, setCount, filterBook }) {
+    const bookList = filterBook || []
     return (
         <div className="Container">
-            {filterBook.length > 0 ? (
-                <Book filterBook={filterBook} count={count} setCount={setCount} />
+            {bookList.length > 0 ? (
+                <Book filterBook={bookList} count={count} setCount={setCount} />
             ) : (
                 <div className="noResult">
                     <h3>검색 결과가 없습니다.</h3>

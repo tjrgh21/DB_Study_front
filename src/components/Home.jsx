@@ -5,11 +5,12 @@ import Footer from "./Footer";
 import "../styles/Home.css";
 import axios from "axios";
 
-function Home({ search, setSearch, count, setCount, setBookInfo, bookInfo }) {
+function Home({ search, setSearch, count, setCount, setBookInfo, bookInfo, filterBook }) {
     useEffect(() => {
         axios.get("http://localhost:4000/book").then((res) => {
             console.log(res.data.list);
             setBookInfo(res.data.list);
+            console.log(res.data.user);
         })
     },[])
 
@@ -17,11 +18,11 @@ function Home({ search, setSearch, count, setCount, setBookInfo, bookInfo }) {
         <div className="Home">
             <Header search={search} setSearch={setSearch} />
             <Container
-                search={search}
                 count={count}
                 setCount={setCount}
                 setBookInfo={setBookInfo}
                 bookInfo={bookInfo}
+                filterBook={filterBook}
             />
             <Footer />
         </div>
