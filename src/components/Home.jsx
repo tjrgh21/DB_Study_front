@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Container from "./Container";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -12,7 +12,10 @@ function Home({ search, setSearch, count, setCount, setBookInfo, bookInfo, filte
             setBookInfo(res.data.list);
             console.log(res.data.user);
         })
-    },[])
+        axios.get("http://localhost:4000/").then((res) => {
+            console.log(res.data.user);
+        })
+    }, [])
 
     return (
         <div className="Home">

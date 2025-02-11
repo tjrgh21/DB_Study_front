@@ -33,3 +33,10 @@
     width: 210px;
     margin-top: 10px;
 }
+
+/* 일단 임시 */
+.homeBtn {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+}

@@ -5,10 +5,12 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function Book({ count, filterBook, setCount }) {
-    const quantityPlus = (book_id) => {
+    const quantityPlus = (book_id, stock) => {
         setCount(prevCounts => ({
             ...prevCounts,
-            [book_id]: prevCounts[book_id] + 1
+            [book_id]: prevCounts[book_id] < stock
+                ? prevCounts[book_id] + 1
+                : stock
         }));
     };
 
@@ -27,6 +29,7 @@ function Book({ count, filterBook, setCount }) {
             book_id: book.book_id,
             quantity: count[book.book_id]
         }).then((res) => {
+            alert("장바구니에 추가되었습니다.")
             console.log(res.data.msg);
         })
     }
@@ -41,7 +44,7 @@ function Book({ count, filterBook, setCount }) {
                     <span>
                         <button onClick={() => quantityMinus(book.book_id)}>-</button>
                         <input className="countBook" type="number" value={count[book.book_id]} />
-                        <button onClick={() => quantityPlus(book.book_id)}>+</button>
+                        <button onClick={() => quantityPlus(book.book_id, book.stock)}>+</button>
                     </span>
                     <button onClick={() => { addCart(book) }}>장바구니</button>
                 </div>

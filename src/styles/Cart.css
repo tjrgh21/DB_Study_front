@@ -4,3 +4,53 @@
     flex-direction: column;
     align-items: center;
 }
+
+.cartBookList {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-content: right;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+
+    position: relative;
+}
+
+.cartBookList > h3 {
+    margin: 0;
+}
+
+.cartCountBook {
+    width: 50px;
+    margin: 5px;
+    text-align: center;
+}
+
+/*input 내 화살표 없애기*/
+.cartCountBook::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.delBtn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* .totalPrice {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0;
+
+    margin-bottom: 0;
+
+    border: 1px solid black;
+} */

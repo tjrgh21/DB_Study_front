@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import "../styles/Login.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 //axios 기본 설정
 axios.defaults.withCredentials = true;
 
 function Login() {
+    const navigate = useNavigate();
+
+    //Home 페이지로
+    const goToHome = () => {
+        navigate("/");
+    }
+
     const [userSignup, setUserSignup] = useState({
         id: "",
         pw: "",
@@ -56,6 +64,7 @@ function Login() {
 
     return (
         <div className="Login">
+            <button className="homeBtn" onClick={goToHome}>홈</button>
             <h2>로그인</h2>
             <div className="LoginContainer">
                 <input
