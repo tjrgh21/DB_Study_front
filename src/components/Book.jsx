@@ -27,7 +27,8 @@ function Book({ count, filterBook, setCount }) {
     const addCart = (book) => {
         axios.post("http://localhost:4000/cartBook", {
             book_id: book.book_id,
-            quantity: count[book.book_id]
+            quantity: count[book.book_id],
+            oneUpdate: false
         }).then((res) => {
             alert("장바구니에 추가되었습니다.")
             console.log(res.data.msg);

@@ -30,7 +30,9 @@ function Cart() {
         axios.post("http://localhost:4000/cartBook", { //DB에 저장하고
             cart_book_list_id,
             book_id,
-            quantity: newQuantity
+            quantity: newQuantity,
+            oneUpdate: true,
+            increase: true
         }).then((res) => { //다시 불러오기
             console.log(res.data.msg);
             axios.get("http://localhost:4000/cartBook").then((res) => {
@@ -54,7 +56,9 @@ function Cart() {
         axios.post("http://localhost:4000/cartBook", {
             cart_book_list_id,
             book_id,
-            quantity: newQuantity
+            quantity: newQuantity,
+            oneUpdate: true,
+            increase: false
         }).then((res) => {
             console.log(res.data.msg);
             axios.get("http://localhost:4000/cartBook").then((res) => {
