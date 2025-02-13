@@ -48,17 +48,25 @@ function Login() {
         axios.post("http://localhost:4000/cart", { user: userSignup }).then((res) => {
             console.log(res.data.msg2)
         })
+        alert("회원가입 완료, 장바구니가 생성되었습니다.")
     }
 
     const onClickLogin = () => {
         axios.post("http://localhost:4000/login", { user: userLogin }).then((res) => {
-            console.log(res.data.msg)
+            console.log(res.data.msg);
+            if (res.data.msg === "로그인 되었습니다.") {
+                alert(res.data.msg);
+                navigate("/");
+            } else {
+                alert(res.data.msg);
+            }
         })
     }
 
     const onClickLogout = () => {
         axios.post("http://localhost:4000/logout").then((res) => {
             console.log(res.data.msg)
+            alert("로그아웃 되었습니다.")
         })
     }
 

@@ -30,9 +30,7 @@ function Header({ search, setSearch }) {
             <input type="text" placeholder="도서 검색" value={search} onChange={searchBook} />
             <div className="myPage">
                 <button className="CartBtn" onClick={goCart}>장바구니</button>
-                <button className="LoginBtn" onClick={goLogin}>
-                    로그인
-                </button>
+                <button className="LoginBtn" onClick={goLogin}>로그인</button>
             </div>
         </div>
     )
