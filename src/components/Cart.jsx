@@ -6,64 +6,65 @@ import axios from "axios";
 
 function Cart() {
     const [cartBookInfo, setCartBookInfo] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    //장바구니 데이터 가져오기
+    const fetchCartData = () => {
+        axios.get("http://localhost:4000/cartBook").then((res) => {
+            setCartBookInfo(res.data.cartList);
+            totalBookPrice(res.data.cartList);
+        });
+    };
 
     useEffect(() => {
         axios.get("http://localhost:4000/cartBook").then((res) => {
             console.log(res.data.cartList);
             setCartBookInfo(res.data.cartList);
         })
+        fetchCartData();
     }, [])
 
-    //GPT 도움
-    //증가
-    const cartQuantityPlus = (cart_book_list_id, stock, book_id, currentQuantity) => {
-        const newQuantity = Math.min(currentQuantity +1, stock);
-        console.log("수량 증가:", { cart_book_list_id, book_id, newQuantity });
+    //총 결제 금액
+    const totalBookPrice = (cartList) => {
+        const total = cartList.reduce((acc, book) => acc + book.price * book.order_quantity, 0);
+        setTotalPrice(total);
+    };
 
-        setCartBookInfo((prevCart) =>
-            prevCart.map((book) =>
-                book.cart_book_list_id === cart_book_list_id
-                    ? { ...book, quantity: newQuantity }
-                    : book
-            )
-        );
-        axios.post("http://localhost:4000/cartBook", { //DB에 저장하고
-            cart_book_list_id,
+    //수량 증가
+    const cartQuantityPlus = (cart_book_list_id, stock, book_id, currentQuantity) => {
+        if (currentQuantity >= stock) {
+            alert("재고량을 초과할 수 없습니다.");
+            return;
+        }
+
+        // const newQuantity = currentQuantity + 1;
+
+        axios.post("http://localhost:4000/updateCartQuantity", {
+            // cart_book_list_id,
             book_id,
-            quantity: newQuantity,
-            oneUpdate: true,
             increase: true
-        }).then((res) => { //다시 불러오기
+        }).then((res) => {
             console.log(res.data.msg);
-            axios.get("http://localhost:4000/cartBook").then((res) => {
-                setCartBookInfo(res.data.cartList);
-            });
+            fetchCartData(); //최신 장바구니 데이터 불러오기
         });
     };
 
-    //감소
+    //수량 감소
     const cartQuantityMinus = (cart_book_list_id, book_id, currentQuantity) => {
-        const newQuantity = Math.max(currentQuantity -1, 1);
-        console.log("수량 감소:", { cart_book_list_id, book_id, newQuantity });
+        if (currentQuantity <= 1) {
+            alert("최소 주문 수량은 1개입니다.");
+            return;
+        }
 
-        setCartBookInfo((prevCart) =>
-            prevCart.map((book) =>
-                book.cart_book_list_id === cart_book_list_id
-                    ? { ...book, quantity: newQuantity }
-                    : book
-            )
-        );
-        axios.post("http://localhost:4000/cartBook", {
-            cart_book_list_id,
+        // const newQuantity = currentQuantity - 1;
+
+        axios.post("http://localhost:4000/updateCartQuantity", {
+            // cart_book_list_id,
             book_id,
-            quantity: newQuantity,
-            oneUpdate: true,
             increase: false
         }).then((res) => {
             console.log(res.data.msg);
-            axios.get("http://localhost:4000/cartBook").then((res) => {
-                setCartBookInfo(res.data.cartList);
-            });
+            fetchCartData(); //최신 장바구니 데이터 불러오기
         });
     };
 
@@ -73,11 +74,9 @@ function Cart() {
             cart_book_list_id
         }).then((res) => {
             console.log(res.data.msg);
-            axios.get("http://localhost:4000/cartBook").then((res) => {
-                setCartBookInfo(res.data.cartList);
-            })
-        })
-    }
+            fetchCartData(); //최신 장바구니 데이터 불러오기
+        });
+    };
 
     return (
         <div className="Cart">
@@ -93,14 +92,15 @@ function Cart() {
                         <input type="number" className="cartCountBook" value={book.order_quantity} />
                         <button onClick={() => cartQuantityPlus(book.cart_book_list_id, book.stock, book.book_book_id, book.order_quantity)}>+</button>
                     </span>
-                    <button className="delBtn" onClick={()=>delBook(book.cart_book_list_id)}>삭제</button>
+                    <button className="delBtn" onClick={() => delBook(book.cart_book_list_id)}>삭제</button>
                 </div>
             ))}
-            <h2 className="totalPrice">총 결제 금액: { }</h2>
+            <h2 className="totalPrice">총 결제 금액: {totalPrice.toLocaleString()}원</h2>
+            <button>구매</button>
         </div>
     )
 };
 
 export default Cart;
-
+//toLocaleString => 천 단위 콤마 표시
 //<p>장바구니가 비어 있습니다.</p>
