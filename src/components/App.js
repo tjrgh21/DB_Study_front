@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Cart from "./Cart";
 import Login from "./Login";
+import Signup from "./Signup";
+import MyPage from "./Mypage";
 
 function App() {
     const [search, setSearch] = useState(""); //Header의 검색 기능
@@ -37,6 +39,8 @@ function App() {
                 <Route path="/" element={<Home search={search} setSearch={setSearch} count={count} setCount={setCount} setBookInfo={setBookInfo} bookInfo={bookInfo} filterBook={filterBook} />} />
                 <Route path="/Cart" element={<Cart count={count} setCount={setCount} />} />
                 <Route path="/Login" element={<Login />} />
+                <Route path="/Signup" element={<Signup />} />
+                <Route path="/MyPage" element={<MyPage />} />
             </Routes>
         </Router>
     )

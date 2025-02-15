@@ -1,4 +1,4 @@
-.Login {
+.Login, .Signup {
     max-width: 1200px;
     display: flex;
     flex-direction: column;
@@ -17,21 +17,13 @@
     padding: 5px;
 }
 
-.LogBtns {
+.LogBtn, .SignupBtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 210px;
+    justify-content: center;
+    width: 213px;
     margin: 10px;
-}
-
-.LogBtn {
-    width: 100px;
-}
-
-.SignupBtn {
-    width: 210px;
-    margin-top: 10px;
 }
 
 /* 일단 임시 */
