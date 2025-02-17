@@ -9,13 +9,13 @@ function MyPage() {
 
     useEffect(() => {
         axios.get("http://localhost:4000/mypage").then(res => {
-                setUserData(prev => ({ ...prev, card: res.data.card || [], address: res.data.address || [] }));
-            })
+            setUserData(prev => ({ ...prev, card: res.data.card || [], address: res.data.address || [] }));
+        })
 
         axios.get("http://localhost:4000/user").then(res => {
-                setUserData(prev => ({ ...prev, id: res.data.id, name: res.data.name }));
-            })
-            
+            setUserData(prev => ({ ...prev, id: res.data.id, name: res.data.name }));
+        })
+
     }, []);
 
     const handleAddCard = () => {
@@ -23,7 +23,8 @@ function MyPage() {
     };
 
     const handleDeleteCard = (card_id) => {
-        axios.delete("http://localhost:4000/deleteCard", { data: { card_id } }).then(() => window.location.reload())
+        axios.post("http://localhost:4000/deleteCard", { card_id: { card_id } }).then((res) =>
+            window.location.reload())
     };
 
     const handleAddAddress = () => {
@@ -31,7 +32,7 @@ function MyPage() {
     };
 
     const handleDeleteAddress = (address_id) => {
-        axios.delete("http://localhost:4000/deleteAddress", { data: { address_id } }).then(() => window.location.reload())
+        axios.post("http://localhost:4000/deleteAddress", { address_id: { address_id } }).then(() => window.location.reload())
     };
 
     return (
