@@ -35,7 +35,7 @@ function MyPage() {
     };
 
     return (
-        <div>
+        <div className="Mypage-Container">
             <h2>마이페이지</h2>
             <p><strong>아이디:</strong> {userData.id}</p>
             <p><strong>이름:</strong> {userData.name}</p>
