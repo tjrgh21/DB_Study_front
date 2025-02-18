@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import "../styles/Cart.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 function Cart() {
     const [cartBookInfo, setCartBookInfo] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const navigate = useNavigate();
 
     //장바구니 데이터 가져오기
     const fetchCartData = () => {
@@ -78,9 +80,21 @@ function Cart() {
         });
     };
 
+    //장바구니 구매
+    const cartBuy = () => {
+        navigate("/Order", {
+            state: {
+                list: cartBookInfo,
+                total: totalPrice,
+                quantity: cartBookInfo.reduce((acc, book) => acc + book.order_quantity, 0),
+                type: "cart"
+            }
+        })
+    }
+
     return (
         <div className="Cart">
-            <Header />
+            <Header/>
             <h2>장바구니 목록</h2>
             {cartBookInfo.map((book) => (
                 <div key={book.cart_book_list_id} className="cartBookList">
@@ -96,7 +110,7 @@ function Cart() {
                 </div>
             ))}
             <h2 className="totalPrice">총 결제 금액: {totalPrice.toLocaleString()}원</h2>
-            <button>구매</button>
+            <button onClick={cartBuy}>구매</button>
         </div>
     )
 };

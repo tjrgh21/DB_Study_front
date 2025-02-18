@@ -45,6 +45,11 @@ input {
     box-sizing: border-box;
 }
 
+.Mypage-Container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .DelBtn{
     background-color: #d23a3a;
     color: white;
@@ -61,7 +66,7 @@ input {
     background-color: #d01313;
 }
 
-.Mypage-Container button {
+.AddBtn {
     background-color: #70cf5c;
     color: white;
     padding: 10px 15px;
@@ -72,6 +77,22 @@ input {
     margin-top: 10px;
 }
 
-button:hover {
+.AddBtn:hover {
     background-color: #4aba50;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-form input,
+.input-form select,
+.input-form button {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }

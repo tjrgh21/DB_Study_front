@@ -31,3 +31,9 @@
     margin: 5px;
     text-align: center;
 }
+
+.BookBtn{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

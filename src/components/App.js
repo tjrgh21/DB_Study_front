@@ -5,6 +5,9 @@ import Cart from "./Cart";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./Mypage";
+import Order from "./Order";
+import OrderList from "./OrderList";
+import OrderDetail from "./OrderDetail";
 
 function App() {
     const [search, setSearch] = useState(""); //Header의 검색 기능
@@ -41,6 +44,9 @@ function App() {
                 <Route path="/Login" element={<Login />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/MyPage" element={<MyPage />} />
+                <Route path="/Order" element={<Order />} />
+                <Route path="/OrderList" element={<OrderList />} />
+                <Route path="/orderDetail/:order_id" element={<OrderDetail />} />
             </Routes>
         </Router>
     )

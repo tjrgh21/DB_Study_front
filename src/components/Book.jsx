@@ -1,10 +1,13 @@
 import React from "react";
 import "../styles/Book.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
-function Book({ count, filterBook, setCount }) {
+function Book({ count, filterBook, setCount, handleBuyNow }) {
+    const navigate = useNavigate();
+
     const quantityPlus = (book_id, stock) => {
         setCount(prevCounts => ({
             ...prevCounts,
@@ -33,6 +36,7 @@ function Book({ count, filterBook, setCount }) {
             alert("장바구니에 추가되었습니다.")
             console.log(res.data.msg);
         })
+        navigate("/Cart");
     }
 
     return (
@@ -47,7 +51,10 @@ function Book({ count, filterBook, setCount }) {
                         <input className="countBook" type="number" value={count[book.book_id]} />
                         <button onClick={() => quantityPlus(book.book_id, book.stock)}>+</button>
                     </span>
-                    <button onClick={() => { addCart(book) }}>장바구니</button>
+                    <div className="BookBtn">
+                        <button onClick={() => { addCart(book) }}>장바구니</button>
+                        <button onClick={() => handleBuyNow(book)}>바로 구매</button>
+                    </div>
                 </div>
             ))}
         </div>

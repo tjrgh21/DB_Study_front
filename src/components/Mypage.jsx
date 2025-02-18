@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Header from "./Header";
 import '../styles/Mypage.css';
 import axios from "axios";
 
@@ -37,6 +38,7 @@ function MyPage() {
 
     return (
         <div className="Mypage-Container">
+            <Header/>
             <h2>마이페이지</h2>
             <p><strong>아이디:</strong> {userData.id}</p>
             <p><strong>이름:</strong> {userData.name}</p>
@@ -54,10 +56,22 @@ function MyPage() {
             ) : (
                 <p>등록된 카드가 없습니다.</p>
             )}
-            <input type="number" placeholder="카드 번호" onChange={(e) => setNewCard({ ...newCard, card_id: e.target.value })} />
-            <input type="date" placeholder="유효 기간" onChange={(e) => setNewCard({ ...newCard, expiration_date: e.target.value })} />
-            <input type="text" placeholder="카드사" onChange={(e) => setNewCard({ ...newCard, card_company: e.target.value })} />
-            <button onClick={handleAddCard}>카드 추가</button>
+            <div className="input-form">
+                <input type="number" placeholder="카드 번호" onChange={(e) => setNewCard({ ...newCard, card_id: e.target.value })} />
+                <input type="date" placeholder="유효 기간" onChange={(e) => setNewCard({ ...newCard, expiration_date: e.target.value })} />
+                
+                <select onChange={(e) => setNewCard({ ...newCard, card_company: e.target.value })}>
+                    <option value="">카드사 선택</option>
+                    <option value="toss">토스</option>
+                    <option value="BC카드">BC카드</option>
+                    <option value="kb국민은행">KB국민은행</option>
+                    <option value="신한카드">신한카드</option>
+                    <option value="우리카드">우리카드</option>
+                    <option value="하나카드">하나카드</option>
+                </select>
+
+                <button className="AddBtn" onClick={handleAddCard}>카드 추가</button>
+            </div>
 
             <h3>주소 목록</h3>
             {userData.address.length > 0 ? (
@@ -72,10 +86,12 @@ function MyPage() {
             ) : (
                 <p>등록된 주소가 없습니다.</p>
             )}
-            <input type="number" placeholder="우편번호" onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })} />
-            <input type="text" placeholder="기본 주소" onChange={(e) => setNewAddress({ ...newAddress, address: e.target.value })} />
-            <input type="text" placeholder="상세 주소" onChange={(e) => setNewAddress({ ...newAddress, detailed_address: e.target.value })} />
-            <button onClick={handleAddAddress}>주소 추가</button>
+            <div className="input-form">
+                <input type="number" placeholder="우편번호" onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })} />
+                <input type="text" placeholder="기본 주소" onChange={(e) => setNewAddress({ ...newAddress, address: e.target.value })} />
+                <input type="text" placeholder="상세 주소" onChange={(e) => setNewAddress({ ...newAddress, detailed_address: e.target.value })} />
+                <button className="AddBtn" onClick={handleAddAddress}>주소 추가</button>
+            </div>
         </div>
     );
 }

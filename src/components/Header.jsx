@@ -3,14 +3,22 @@ import '../styles/Header.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Header({ search, setSearch }) {
+function Header({ search, setSearch, type }) {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:4000/").then((res) => {
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get("http://localhost:4000/");
                 setUser(res.data.user);
-            })
+            } catch (error) {
+                console.error("유저 정보를 불러올 수 없습니다:", error);
+                setUser(null);
+            }
+        };
+        
+        fetchUser();
     }, []);
 
     //Cart 페이지로
@@ -32,6 +40,10 @@ function Header({ search, setSearch }) {
         navigate("/Mypage");
     }
 
+    const goOrder = () => {
+        navigate("/OrderList");
+    }
+
     const searchBook = (e) => {
         setSearch(e.target.value);
     }
@@ -48,16 +60,23 @@ function Header({ search, setSearch }) {
     return (
         <div className="Header">
             <div className="logo" onClick={goHome}>동서문고</div>
+            {type==="search"
+            ?
             <input type="text" placeholder="도서 검색" value={search} onChange={searchBook} />
+            :
+            null
+            }
+            
             <div className="Btns">
-                {user ? (
+                {!user ? (
+                    <button className="LoginBtn" onClick={goLogin}>로그인</button>
+                ) : (
                     <>
                     <button className="CartBtn" onClick={goCart}>장바구니</button>
-                    <button className="LogoutBtn" onClick={onClickLogout}>로그아웃</button>
+                    <button className="OrderBtn" onClick={goOrder}>주문내역</button>
                     <button className="MypageBtn" onClick={goMypage}>MyPage</button>
+                    <button className="LogoutBtn" onClick={onClickLogout}>로그아웃</button>
                     </>
-                ) : (
-                    <button className="LoginBtn" onClick={goLogin}>로그인</button>
                 )}
             </div>
         </div>

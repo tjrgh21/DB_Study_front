@@ -2,12 +2,12 @@ import React from "react";
 import Book from "./Book";
 import '../styles/Container.css';
 
-function Container({ count, setCount, filterBook }) {
+function Container({ count, setCount, filterBook, handleBuyNow }) {
     const bookList = filterBook || []
     return (
         <div className="Container">
             {bookList.length > 0 ? (
-                <Book filterBook={bookList} count={count} setCount={setCount} />
+                <Book filterBook={bookList} count={count} setCount={setCount} handleBuyNow={handleBuyNow} />
             ) : (
                 <div className="noResult">
                     <h3>검색 결과가 없습니다.</h3>
