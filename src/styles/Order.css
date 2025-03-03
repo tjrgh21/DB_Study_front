@@ -1,0 +1,9 @@
+.infoBox{
+    display: flex;
+    gap: 200px;
+    justify-content: flex-start;
+}
+
+.Order-Container label {
+    width: 600px;
+}

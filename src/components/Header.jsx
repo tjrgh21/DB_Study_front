@@ -17,32 +17,14 @@ function Header({ search, setSearch, type }) {
                 setUser(null);
             }
         };
-        
         fetchUser();
     }, []);
 
-    //Cart 페이지로
-    const goCart = () => {
-        navigate("/Cart");
-    }
-
-    //Login 페이지로
-    const goLogin = () => {
-        navigate("/Login");
-    }
-
-    //Home 으로
-    const goHome = () => {
-        navigate("/");
-    }
-
-    const goMypage = () => {
-        navigate("/Mypage");
-    }
-
-    const goOrder = () => {
-        navigate("/OrderList");
-    }
+    const goCart = () => navigate("/Cart");
+    const goLogin = () => navigate("/Login");
+    const goHome = () => navigate("/");
+    const goMypage = () => navigate("/Mypage");
+    const goOrder = () => navigate("/OrderList");
 
     const searchBook = (e) => {
         setSearch(e.target.value);
@@ -60,12 +42,9 @@ function Header({ search, setSearch, type }) {
     return (
         <div className="Header">
             <div className="logo" onClick={goHome}>동서문고</div>
-            {type==="search"
-            ?
-            <input type="text" placeholder="도서 검색" value={search} onChange={searchBook} />
-            :
-            null
-            }
+            {type === "search" && (
+                <input type="text" placeholder="도서 검색" value={search} onChange={searchBook} />
+            )}
             
             <div className="Btns">
                 {!user ? (

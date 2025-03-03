@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
-function Book({ count, filterBook, setCount, handleBuyNow }) {
+function Book({ count, filterBook, setCount, handleBuyNow, user }) {
     const navigate = useNavigate();
 
     const quantityPlus = (book_id, stock) => {
@@ -28,15 +28,22 @@ function Book({ count, filterBook, setCount, handleBuyNow }) {
 
     //장바구니에 책 추가
     const addCart = (book) => {
-        axios.post("http://localhost:4000/cartBook", {
-            book_id: book.book_id,
-            quantity: count[book.book_id],
-            increase: true
-        }).then((res) => {
-            alert("장바구니에 추가되었습니다.")
-            console.log(res.data.msg);
-        })
-        navigate("/Cart");
+        if (!user){
+            alert("로그인이 필요합니다")
+            navigate("/Login")
+        }
+        else{
+            axios.post("http://localhost:4000/cartBook", {
+                book_id: book.book_id,
+                quantity: count[book.book_id],
+                increase: true
+            }).then((res) => {
+                alert("장바구니에 추가되었습니다.")
+                console.log(res.data.msg);
+            })
+            navigate("/Cart");
+        }
+        
     }
 
     return (

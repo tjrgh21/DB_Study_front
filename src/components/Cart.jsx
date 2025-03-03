@@ -28,7 +28,8 @@ function Cart() {
 
     //총 결제 금액
     const totalBookPrice = (cartList) => {
-        const total = cartList.reduce((acc, book) => acc + book.price * book.order_quantity, 0);
+        let total = 0;
+        cartList.map(book => total += book.price * book.order_quantity);
         setTotalPrice(total);
     };
 

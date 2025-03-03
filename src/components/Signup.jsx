@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,15 @@ function Signup() {
         name: ""
     });
 
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:4000/signup").then((res) => {
+            setUserList(res.data.userList)
+            console.log(res.data.userList);
+        });
+    }, [])
+
     const goToHome = () => {
         navigate("/");
     };
@@ -28,6 +37,12 @@ function Signup() {
     };
 
     const onClickSignup = () => {
+        const isDuplicate = userList.some(user => user.id === userSignup.id);
+        if (isDuplicate) {
+            alert("❌ 이미 존재하는 아이디입니다.");
+            window.location.reload();
+            return;
+        }
         axios.post("http://localhost:4000/signup", { user: userSignup }).then((res) => {
             console.log(res.data.msg);
         });
